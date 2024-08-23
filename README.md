@@ -1,5 +1,7 @@
 # Profile Tg Mini App
 
+[Bot](https://t.me/Zedbyl_bot)
+
 Mini Profile is a project that allows you to create a [mini app](https://core.telegram.org/bots/webapps) for [Telegram](https://telegram.org/), the messaging app with over 500 million active users, that connects to your [TON Connect](https://docs.ton.org/develop/dapps/ton-connect/react).
 
 It uses [Next.js](https://nextjs.org/), a React framework for building fast and scalable web applications, and the Telegram [Bot API](https://core.telegram.org/bots/api).
