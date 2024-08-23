@@ -115,3 +115,12 @@
     }
   }
 }
+
+.error {
+  @include m-section-container;
+  @include m-typography(22px, 28px, 600);
+  color: $colorWhite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

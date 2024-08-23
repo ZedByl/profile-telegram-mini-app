@@ -1,6 +1,7 @@
 'use client'
 import { FC, useEffect, useState } from 'react';
 import AOS from 'aos'
+import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTelegram } from '@providers/telegram-provider';
 
 import Main from '@components/pages/Home/components/Main';
@@ -8,10 +9,9 @@ import About from '@components/pages/Home/components/About';
 import Skills from '@components/pages/Home/components/Skills';
 
 import styles from "@components/pages/Home/index.module.scss";
-import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
 const HomePage: FC = () => {
-  const { webApp} = useTelegram()
+  const { webApp, chatId} = useTelegram()
   const [finishedText, setFinishedText] = useState(false)
   const text = 'I&rsquo;\tam a frontend developer with 5 years of experience. I love coding and building websites.'
   const baseUrl = process.env.NEXT_PUBLIC_BASE_PATH || ''
@@ -29,6 +29,15 @@ const HomePage: FC = () => {
       once: true,
     });
   }, [])
+
+  if (!chatId) {
+    return (
+      <div className={styles.error}>
+        <h2>Something went wrong</h2>
+        <p>Open the app in Telegram or try again later 😏</p>
+      </div>
+    )
+  }
 
   return (
     <TonConnectUIProvider
