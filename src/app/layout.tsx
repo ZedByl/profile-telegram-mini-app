@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         {children}
+        <div className='three' id='three-id' />
       </body>
     </html>
   );

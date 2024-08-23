@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import AOS from 'aos'
 import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { useTelegram } from '@providers/telegram-provider';
+import { useThreeScene } from '@hooks/useThreeScene';
 
 import Main from '@components/pages/Home/components/Main';
 import About from '@components/pages/Home/components/About';
@@ -12,10 +13,13 @@ import styles from "@components/pages/Home/index.module.scss";
 
 const HomePage: FC = () => {
   const { webApp, chatId} = useTelegram()
+
   const [finishedText, setFinishedText] = useState(false)
   const text = 'I&rsquo;\tam a frontend developer with 5 years of experience. I love coding and building websites.'
   const baseUrl = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const tgUrl = process.env.NEXT_PUBLIC_TELEGRAM_BOT_URL || ''
+
+  useThreeScene()
 
   useEffect(() => {
     if (webApp) {
