@@ -1,0 +1,23 @@
+/**
+ * Colors
+ */
+$bgColor: #26303B;
+$colorGray: #9CABBA;
+$colorOnPrimary: #f6f6f6;
+$colorWhite: #fff;
+
+/**
+ * Hovers
+ */
+$opacityHover: 0.7;
+$hoverTransition: 0.300s;
+
+/**
+ * Media query breakpoints
+ */
+$mediaQueries: (
+  mobile: 660px,
+  tabletPortrait: 960px,
+  tabletLandscape: 1260px,
+  desktopSmall: 1440px,
+);

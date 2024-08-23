@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+
+  # Bot UI in development mode
+  bot-ui:
+    restart: on-failure
+    networks:
+      - web
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./next.config.mjs:/app/next.config.mjs
+    build:
+      context: ./
+      dockerfile: dev.Dockerfile
+
+  # Nginx proxy to forward request to UI and API
+  dev-proxy:
+    image: nginx:stable-alpine
+    networks:
+      - web
+    depends_on:
+      - bot-ui
+    restart: on-failure
+    environment:
+      PORT: 3000
+      API_URL: http://bot-api:8080
+      UI_URL: http://bot-ui:3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./proxy.template:/etc/nginx/templates/default.conf.template
+
+networks:
+  web:

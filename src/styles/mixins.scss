@@ -1,0 +1,103 @@
+@import './variables.scss';
+
+@mixin m-typography($fontSize: 12px, $lineHeight: 16px, $fontWeight: 400) {
+  font-weight: $fontWeight;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+}
+
+@mixin m-typography-source-sans-pro() {
+  font-family: 'Source Sans Pro', serif !important;
+}
+
+@mixin m-typography-piex() {
+  font-family: 'IBM Plex Sans', serif !important;
+}
+
+@mixin m-width-container {
+  //position: relative;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 80px;
+  z-index: 5;
+
+  @include mediaQuery(tabletPortrait) {
+    padding: 16px;
+  }
+}
+
+@mixin m-button($fontSize: 14px, $lineHeight: 18px, $fontWeight: 600, $colorBG: $bgColor, $color: $colorOnPrimary) {
+  @include m-hover();
+  background-color: $colorBG;
+  border-radius: 16px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  outline: none;
+  border: 2px solid $colorBG;
+  width: 100%;
+
+  &__text {
+    @include m-typography($fontSize, $lineHeight, $fontWeight);
+    display: flex;
+    align-items: center;
+    color: $color;
+    border-style: hidden;
+    outline: none;
+
+    & img {
+      width: 6px;
+      height: 9px;
+      margin-left: 6px;
+    }
+  }
+}
+
+@mixin m-section-container {
+  padding: 16px;
+
+  & h2 {
+    margin: 0 0 12px 0;
+  }
+
+  & p {
+    margin: 0;
+  }
+}
+
+@mixin m-hover($color: $colorOnPrimary) {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      cursor: pointer;
+      opacity: $opacityHover;
+      transition: 200ms all ease;
+      color: $color !important;
+    }
+  }
+}
+
+/*
+ * desktopSmall - 1440px
+ * tabletLandscape - 1260px
+ * tabletPortrait - 960px
+ * mobile - 660px
+ */
+@mixin mediaQuery($breakpoint) {
+  $uniqueScreen: true;
+  @each $breakpoints, $size in $mediaQueries {
+    @if $breakpoint == $breakpoints {
+      $uniqueScreen: false;
+      @media (max-width: $size) {
+        @content;
+      }
+    }
+  }
+  @if $uniqueScreen {
+    @media (max-width: $breakpoint) {
+      @content;
+    }
+  }
+}

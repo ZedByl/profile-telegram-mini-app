@@ -1,0 +1,117 @@
+@import "../../../styles/mixins";
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 659px;
+  margin: 0 auto;
+  overflow: hidden;
+  padding-bottom: 64px;
+  position: relative;
+}
+
+.lang {
+  @include m-typography(20px, 22px, 600);
+  @include m-hover();
+  position: absolute;
+  right: 16px;
+  top: 16px;
+}
+
+.main {
+  @include m-section-container;
+  text-align: center;
+  color: $colorWhite;
+
+  &__image {
+    max-width: 128px;
+    max-height: 128px;
+    border-radius: 64px;
+    object-fit: cover;
+  }
+
+  &__name {
+    @include m-typography(22px, 28px, 600);
+    margin-bottom: 8px;
+  }
+
+  &__work {
+    @include m-typography(16px, 24px, 600);
+    color: $colorGray;
+    margin-bottom: 18px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  &__button {
+    @include m-button(14px, 21px, 600);
+
+    &.two {
+      @include m-button(14px, 21px, 600, #369EFF);
+    }
+
+    &.three {
+      @include m-button(14px, 21px, 600, #369EFF);
+      margin-top: 16px;
+    }
+
+    &__ton {
+      @include m-typography(14px, 21px, 600);
+      margin-top: 16px;
+
+      & button, & ul {
+        width: 100%;
+        justify-content: center;
+      }
+
+      & tc-root {
+        display: inline-flex;
+        justify-content: center;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.about {
+  @include m-section-container;
+  @include m-typography(16px, 24px, 600);
+  color: $colorWhite;
+
+  & h2 {
+    margin: 0 0 12px 0;
+  }
+}
+
+.skills {
+  @include m-section-container;
+  @include m-typography(16px, 24px, 600);
+  color: $colorWhite;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background-color: #1C2126;
+    border: 1px solid #2E3B45;
+    border-radius: 8px;
+    text-align: center;
+
+    & svg {
+      margin-right: 12px;
+    }
+  }
+}
