@@ -20,7 +20,7 @@ bot.command('menu', (ctx) => {
   const chatId = ctx?.message?.chat?.id || ''
   const urlApp = BASE_PATH + `?chatId=${chatId}`
 
-  ctx.setChatMenuButton({
+  return ctx.setChatMenuButton({
     text: '🕹 Click',
     type: 'web_app',
     web_app: { url: urlApp }
