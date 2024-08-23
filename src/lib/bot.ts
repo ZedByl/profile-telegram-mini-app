@@ -11,21 +11,16 @@ bot.start(async (ctx) => {
   const text = 'Нажмите кнопку ниже, чтобы открыть Mini App:';
   const urlApp = BASE_PATH + `?chatId=${chatId}`
 
-  await ctx.reply(text,
-    Markup.inlineKeyboard([Markup.button.webApp("Open", urlApp)]),
-  )
-});
-
-bot.command('menu', (ctx) => {
-  const chatId = ctx?.message?.chat?.id || ''
-  const urlApp = BASE_PATH + `?chatId=${chatId}`
-
-  return ctx.setChatMenuButton({
+  await ctx.setChatMenuButton({
     text: '🕹 Click',
     type: 'web_app',
     web_app: { url: urlApp }
   })
-})
+
+  await ctx.reply(text,
+    Markup.inlineKeyboard([Markup.button.webApp("Open", urlApp)]),
+  )
+});
 
 export const initWebhook = () => {
   return bot.telegram.setWebhook(WEBHOOK_URL)
