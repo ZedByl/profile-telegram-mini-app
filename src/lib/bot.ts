@@ -12,7 +12,7 @@ bot.start(async (ctx) => {
   const urlApp = BASE_PATH + `?chatId=${chatId}`
 
   await ctx.setChatMenuButton({
-    text: '🕹 Click',
+    text: 'Click',
     type: 'web_app',
     web_app: { url: urlApp }
   })
