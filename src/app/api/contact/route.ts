@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
     const id = body.chatId
-    const text = '<b>My contact 😏</b>\n<b>Tg:</b> <a href="t.me/zedbyl">@ZedByl</a>\n<b>GitHub:</b> <a href="https://github.com/ZedByl/Profile-tg">ZedByl</a>\n<b>Email:</b> <code>chetverikovnikita@gmail.com</code>'
+    const text = '<b>My contact 😏</b>\n<b>Tg:</b> <a href="t.me/zedbyl">@ZedByl</a>\n<b>GitHub:</b> <a href="https://github.com/ZedByl/profile-telegram-mini-app">ZedByl</a>\n<b>Email:</b> <code>chetverikovnikita@gmail.com</code>'
 
     if (!id) {
       return NextResponse.json('Not ID', { status: 400 })
