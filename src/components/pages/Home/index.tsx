@@ -36,7 +36,7 @@ const HomePage: FC = () => {
 
   if (!chatId) {
     return (
-      <div className={styles.error}>
+      <div className={styles.error} data-aos="zoom-in">
         <h2>Something went wrong</h2>
         <p>Open the app in Telegram or try again later 😏</p>
       </div>

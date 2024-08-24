@@ -5,7 +5,7 @@ import { TonConnectButton, useTonConnectUI, useTonWallet } from '@tonconnect/ui-
 import { beginCell, toNano } from 'ton';
 
 import styles from '@components/pages/Home/index.module.scss';
-import ava from '@app/face.jpg';
+import ava from '@assets/face.jpg';
 
 const body = beginCell()
 .storeUint(0, 32)
