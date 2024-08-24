@@ -45,7 +45,7 @@ class World {
 
       if (skull) {
         this.setIsReady(true);
-        loop.updatables.push(skull);
+        // loop.updatables.push(skull);
         scene.add(skull);
       }
 
