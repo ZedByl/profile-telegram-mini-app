@@ -4,8 +4,8 @@ import { Typewriter } from '@components/ui';
 import styles from '@components/pages/Home/index.module.scss';
 
 interface IProps {
-  text: string
-  setFinishedText: Dispatch<SetStateAction<boolean>>
+  text: string;
+  setFinishedText: Dispatch<SetStateAction<boolean>>;
 }
 
 const About: FC<IProps> = ({ text, setFinishedText }) => {
@@ -21,4 +21,4 @@ const About: FC<IProps> = ({ text, setFinishedText }) => {
   );
 };
 
-export default About
+export default About;

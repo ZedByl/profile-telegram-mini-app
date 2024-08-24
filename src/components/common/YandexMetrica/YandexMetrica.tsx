@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react'
+import { FC, ReactElement } from 'react';
 
 export const YandexMetrica: FC<{ id: string }> = ({
   id
@@ -18,10 +18,10 @@ export const YandexMetrica: FC<{ id: string }> = ({
       });
     </script>
     <noscript><div><img src="https://mc.yandex.ru/watch/${id}" style="position:absolute; left:-9999px;" alt=""/></div></noscript>
-  `
+  `;
   return (
     <div
       dangerouslySetInnerHTML={{ __html: YandexMetrica }}
     />
-  )
-}
+  );
+};

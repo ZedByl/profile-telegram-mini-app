@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import Script from 'next/script';
 import { useSearchParams } from 'next/navigation';
@@ -18,8 +18,8 @@ export function TelegramProvider({ children }: {
   const [webApp, setWebApp] = useState<WebApp | null>(null);
   const [isTgReady, setIsTgReady] = useState(false);
   const searchParams = useSearchParams();
-  const chatId = searchParams.get('chatId') || ''
-  const id = process.env.NEXT_PUBLIC_YM_ID || ''
+  const chatId = searchParams.get('chatId') || '';
+  const id = process.env.NEXT_PUBLIC_YM_ID || '';
 
   useEffect(() => {
     const telegram: Telegram | null = (window as any).Telegram;

@@ -1,1 +1,1 @@
-export { YandexMetrica } from './YandexMetrica'
+export { YandexMetrica } from './YandexMetrica';

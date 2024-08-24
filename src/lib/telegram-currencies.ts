@@ -1118,4 +1118,4 @@ export default {
         "min_amount": "1922",
         "max_amount": "19226494"
     }
-}
+};

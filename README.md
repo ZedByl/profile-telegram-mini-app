@@ -6,7 +6,7 @@ Mini Profile is a project that allows you to create a [mini app](https://core.te
 
 It uses [Next.js](https://nextjs.org/), a React framework for building fast and scalable web applications, and the Telegram [Bot API](https://core.telegram.org/bots/api).
 
-You can use this project as a template to customize your mini app with your own branding, products, and features, or modify the API to connect any other online store that supports RESTful web services. This project is open source and free to use. You can find the source code, documentation, and installation instructions [here on GitHub](https://github.com/ZedByl/Profile-tg).
+You can use this project as a template to customize your mini app with your own branding, products, and features, or modify the API to connect any other online store that supports RESTful web services. This project is open source and free to use. You can find the source code, documentation, and installation instructions [here on GitHub](https://github.com/ZedByl/profile-telegram-mini-app).
 
 ## Requirements
 
@@ -81,5 +81,3 @@ curl -X POST https://<your-deployment-url>/api/telegram-hook/init?secret_hash=<t
 ```
 
 Replace `<your-deployment-url>` with the base URL of your deployment and `<the-secret-password-from-env-var>` with the value of `TELEGRAM_BOT_SECRET` in your environment variables or `.env`.
-
-Now your mini app is ready! You can test it by sending commands or messages to your Telegram bot. Enjoy! 😊

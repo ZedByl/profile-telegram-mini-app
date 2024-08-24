@@ -1,2 +1,2 @@
-export { Typewriter } from './Typewriter'
-export { Spinner } from './Spinner'
+export { Typewriter } from './Typewriter';
+export { Spinner } from './Spinner';

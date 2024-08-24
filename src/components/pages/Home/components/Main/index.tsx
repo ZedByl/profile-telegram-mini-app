@@ -13,12 +13,12 @@ const body = beginCell()
 .endCell();
 
 const Main = () => {
-  const { user, webApp, chatId } = useTelegram()
+  const { user, webApp, chatId } = useTelegram();
   const [tonConnectUI, setOptions] = useTonConnectUI();
   const wallet = useTonWallet();
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
 
-  const address = process.env.NEXT_PUBLIC_TON_ADDRESS!!
+  const address = process.env.NEXT_PUBLIC_TON_ADDRESS!!;
 
   const myTransaction = {
     validUntil: Math.floor(Date.now() / 1000) + 360,
@@ -29,60 +29,60 @@ const Main = () => {
         payload: body.toBoc().toString("base64")
       }
     ]
-  }
+  };
 
   const changeLoading = () => {
-    setIsLoading((prevState) => !prevState)
-  }
+    setIsLoading((prevState) => !prevState);
+  };
 
   const handleDonate = async () => {
     if (!address) {
-      webApp?.HapticFeedback?.notificationOccurred('error')
-      return null
+      webApp?.HapticFeedback?.notificationOccurred('error');
+      return null;
     }
 
     try {
-      changeLoading()
-      webApp?.HapticFeedback?.impactOccurred('soft')
-      await tonConnectUI.sendTransaction(myTransaction)
-      webApp?.HapticFeedback?.notificationOccurred('success')
-      changeLoading()
+      changeLoading();
+      webApp?.HapticFeedback?.impactOccurred('soft');
+      await tonConnectUI.sendTransaction(myTransaction);
+      webApp?.HapticFeedback?.notificationOccurred('success');
+      changeLoading();
     } catch (error) {
-      console.error(error)
-      webApp?.HapticFeedback?.notificationOccurred('error')
-      changeLoading()
+      console.error(error);
+      webApp?.HapticFeedback?.notificationOccurred('error');
+      changeLoading();
     }
-  }
+  };
 
   const handleResume = async () => {
     try {
-      changeLoading()
-      webApp?.HapticFeedback.impactOccurred('light')
-      await fetch('api/resume', { method: "POST", body: JSON.stringify({ user, webApp, chatId }) })
-      webApp?.HapticFeedback?.notificationOccurred('success')
-      webApp?.close()
-      changeLoading()
+      changeLoading();
+      webApp?.HapticFeedback.impactOccurred('light');
+      await fetch('api/resume', { method: "POST", body: JSON.stringify({ user, webApp, chatId }) });
+      webApp?.HapticFeedback?.notificationOccurred('success');
+      webApp?.close();
+      changeLoading();
     } catch (error) {
-      console.error(error)
-      webApp?.HapticFeedback?.notificationOccurred('error')
-      changeLoading()
+      console.error(error);
+      webApp?.HapticFeedback?.notificationOccurred('error');
+      changeLoading();
     }
-  }
+  };
 
   const handleContact = async () => {
     try {
-      changeLoading()
-      webApp?.HapticFeedback.impactOccurred('light')
-      await fetch('api/contact', { method: "POST", body: JSON.stringify({ user, webApp, chatId }) })
-      webApp?.HapticFeedback?.notificationOccurred('success')
-      webApp?.close()
-      changeLoading()
+      changeLoading();
+      webApp?.HapticFeedback.impactOccurred('light');
+      await fetch('api/contact', { method: "POST", body: JSON.stringify({ user, webApp, chatId }) });
+      webApp?.HapticFeedback?.notificationOccurred('success');
+      webApp?.close();
+      changeLoading();
     } catch (error) {
-      console.error(error)
-      webApp?.HapticFeedback?.notificationOccurred('error')
-      changeLoading()
+      console.error(error);
+      webApp?.HapticFeedback?.notificationOccurred('error');
+      changeLoading();
     }
-  }
+  };
 
   return (
     <section className={styles.main}>

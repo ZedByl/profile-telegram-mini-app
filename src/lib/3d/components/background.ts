@@ -1,7 +1,8 @@
 import { Mesh, PlaneGeometry, ShaderMaterial } from 'three';
 import { fragmentShader, vertexShader } from '@lib/3d/shader';
+import { ExtendsMash } from '@lib/3d/types';
 
-function createBackground(): Mesh {
+function createBackground(): ExtendsMash {
   const geometry = new PlaneGeometry(2, 2);
   const material = new ShaderMaterial({
     vertexShader,
@@ -10,12 +11,13 @@ function createBackground(): Mesh {
       uTime: { value: 0.0 }
     }
   });
-  const plane = new Mesh(geometry, material);
+  const plane: ExtendsMash = new Mesh(geometry, material);
 
-  // @ts-ignore
+  plane.position.z = -0.2;
+
   plane.tick = (delta: number) => {
     plane.material.uniforms.uTime.value = delta * 0.001;
-  }
+  };
 
   return plane;
 }

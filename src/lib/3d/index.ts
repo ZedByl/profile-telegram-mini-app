@@ -1,33 +1,35 @@
 import { Dispatch, SetStateAction } from 'react';
-import { BufferGeometry, Material, MathUtils, Mesh, NormalBufferAttributes, Object3D, Object3DEventMap, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+import { PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+import { Easing, Tween } from '@tweenjs/tween.js';
 
 import { Resizer } from '@lib/3d/systems/Resizer';
 import { Loop } from '@lib/3d/systems/Loop';
 
 import { createBackground, createCamera, createLights, createScene, createSkull } from '@lib/3d/components';
 import { createRenderer } from '@lib/3d/systems/renderer';
+import { ExtendsMash, ExtendsObject3D } from '@lib/3d/types';
 
 let camera: PerspectiveCamera;
 let renderer: WebGLRenderer;
 let scene: Scene;
 let loop: Loop;
 let rootContainer: HTMLElement;
-let skull: Object3D<Object3DEventMap>
-let bg: Mesh<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap>
-let setIsReady: Dispatch<SetStateAction<boolean>>
+let skull: ExtendsObject3D;
+let bg: ExtendsMash;
+let setIsReady: Dispatch<SetStateAction<boolean>>;
 
 class World {
   constructor(container: HTMLElement, fc: Dispatch<SetStateAction<boolean>>) {
-    setIsReady = fc
+    setIsReady = fc;
     camera = createCamera();
     renderer = createRenderer();
     scene = createScene();
     loop = new Loop(camera, scene, renderer);
-    rootContainer = container
+    rootContainer = container;
 
     rootContainer.append(renderer.domElement);
 
-    this.initializeSkull()
+    this.initializeSkull();
     bg = createBackground();
     const light = createLights();
 
@@ -40,22 +42,27 @@ class World {
 
   async initializeSkull() {
     try {
-      skull = await createSkull(this.handleScroll);
+      skull = await createSkull();
+      const animatePosition = new Tween(skull.position)
+      .to({ z: 0.25, y: 0 }, 3200)
+      .easing(Easing.Quadratic.Out)
+      .start();
+
+      const animateRotation = new Tween(skull.rotation)
+      .to({ x: -0.7 }, 3200)
+      .easing(Easing.Quadratic.Out)
+      .start();
+
+      loop.updatables.push(skull);
 
       if (skull) {
         setIsReady(true);
-
-        const radiansPerSecond = MathUtils.degToRad(500);
-
-        // @ts-ignore
-        skull.tick = (delta: number) => {
-          // if (skull.position.z <= 0.25) {
-          //   skull.position.z += radiansPerSecond * delta;
-          // }
-        }
-
         scene.add(skull);
-        loop.updatables.push(skull);
+
+        skull.tick = () => {
+          animatePosition.update();
+          animateRotation.update();
+        };
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -70,11 +77,11 @@ class World {
   }
 
   listener() {
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   removeListener() {
-    window.removeEventListener('scroll', this.handleScroll)
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
   render() {
@@ -83,7 +90,6 @@ class World {
 
   start() {
     loop.start();
-    console.log(loop, '324243')
   }
 
   stop() {
