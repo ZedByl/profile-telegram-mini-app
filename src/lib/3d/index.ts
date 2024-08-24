@@ -17,10 +17,8 @@ let bg: Mesh<BufferGeometry<NormalBufferAttributes>, Material | Material[], Obje
 let setIsReady: Dispatch<SetStateAction<boolean>>
 
 class World {
-  constructor(container: HTMLElement,
-              // fc: Dispatch<SetStateAction<boolean>>
-  ) {
-    // setIsReady = fc
+  constructor(container: HTMLElement, fc: Dispatch<SetStateAction<boolean>>) {
+    setIsReady = fc
     camera = createCamera();
     renderer = createRenderer();
     scene = createScene();
@@ -45,18 +43,19 @@ class World {
       skull = await createSkull(this.handleScroll);
 
       if (skull) {
-        // setIsReady(true);
-        loop.updatables.push(skull);
-        scene.add(skull);
-      }
+        setIsReady(true);
 
-      const radiansPerSecond = MathUtils.degToRad(500);
+        const radiansPerSecond = MathUtils.degToRad(500);
 
-      // @ts-ignore
-      skull.tick = (delta: number) => {
-        if (skull.position.z <= 0.25) {
-          skull.position.z += radiansPerSecond * delta;
+        // @ts-ignore
+        skull.tick = (delta: number) => {
+          // if (skull.position.z <= 0.25) {
+          //   skull.position.z += radiansPerSecond * delta;
+          // }
         }
+
+        scene.add(skull);
+        loop.updatables.push(skull);
       }
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -84,16 +83,11 @@ class World {
 
   start() {
     loop.start();
+    console.log(loop, '324243')
   }
 
   stop() {
     loop.stop();
-  }
-
-  destroy() {
-    rootContainer.removeChild(renderer.domElement)
-    scene.remove(skull)
-    scene.remove(bg)
   }
 }
 

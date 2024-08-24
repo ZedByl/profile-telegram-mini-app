@@ -9,7 +9,7 @@ async function createSkull(handleScroll: any): Promise<Object3D<Object3DEventMap
   const model = data.scene.children[0]
 
   model.scale.set(0.15, 0.15, 0.15);
-  model.position.setZ(-0.2)
+  model.position.setZ(0.25)
   model.rotation.x = -0.7
 
   return model;

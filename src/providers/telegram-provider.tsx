@@ -21,8 +21,6 @@ export function TelegramProvider({ children }: {
   const chatId = searchParams.get('chatId') || ''
   const id = process.env.NEXT_PUBLIC_YM_ID || ''
 
-  console.log(id)
-
   useEffect(() => {
     const telegram: Telegram | null = (window as any).Telegram;
     const app = telegram?.WebApp;
