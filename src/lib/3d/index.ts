@@ -14,12 +14,11 @@ let loop: Loop;
 let rootContainer: HTMLElement;
 let skull: Object3D<Object3DEventMap>
 let bg: Mesh<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap>
+let setIsReady: Dispatch<SetStateAction<boolean>>
 
 class World {
-  setIsReady: Dispatch<SetStateAction<boolean>>
-
-  constructor(container: HTMLElement, setIsReady: Dispatch<SetStateAction<boolean>>) {
-    this.setIsReady = setIsReady
+  constructor(container: HTMLElement, fc: Dispatch<SetStateAction<boolean>>) {
+    setIsReady = fc
     camera = createCamera();
     renderer = createRenderer();
     scene = createScene();
@@ -44,8 +43,8 @@ class World {
       skull = await createSkull(this.handleScroll);
 
       if (skull) {
-        this.setIsReady(true);
-        // loop.updatables.push(skull);
+        setIsReady(true);
+        loop.updatables.push(skull);
         scene.add(skull);
       }
 
