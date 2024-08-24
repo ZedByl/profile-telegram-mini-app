@@ -31,11 +31,11 @@ class World {
 
     this.initializeSkull();
     bg = createBackground();
-    const light = createLights();
+    const [one, two] = createLights();
 
     loop.updatables.push(bg);
 
-    scene.add(bg, light);
+    scene.add(bg, one, two);
 
     new Resizer(rootContainer, camera, renderer);
   }
