@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import { BufferGeometry, Material, MathUtils, Mesh, NormalBufferAttributes, Object3D, Object3DEventMap, PerspectiveCamera, Scene, WebGLRenderer } from 'three';
 
 import { Resizer } from '@lib/3d/systems/Resizer';
@@ -15,7 +16,10 @@ let skull: Object3D<Object3DEventMap>
 let bg: Mesh<BufferGeometry<NormalBufferAttributes>, Material | Material[], Object3DEventMap>
 
 class World {
-  constructor(container: HTMLElement) {
+  setIsReady: Dispatch<SetStateAction<boolean>>
+
+  constructor(container: HTMLElement, setIsReady: Dispatch<SetStateAction<boolean>>) {
+    this.setIsReady = setIsReady
     camera = createCamera();
     renderer = createRenderer();
     scene = createScene();
@@ -39,8 +43,11 @@ class World {
     try {
       skull = await createSkull(this.handleScroll);
 
-      loop.updatables.push(skull);
-      scene.add(skull)
+      if (skull) {
+        this.setIsReady(true);
+        loop.updatables.push(skull);
+        scene.add(skull);
+      }
 
       const radiansPerSecond = MathUtils.degToRad(500);
 
@@ -58,7 +65,7 @@ class World {
   handleScroll() {
     if (skull) {
       const scrollY = window.scrollY || window.pageYOffset;
-      skull.rotation.x = -0.7 - (scrollY * 0.005);
+      skull.rotation.x = -0.7 - (scrollY * 0.0005);
     }
   }
 

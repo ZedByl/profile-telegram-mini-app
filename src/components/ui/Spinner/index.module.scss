@@ -1,0 +1,20 @@
+.spinner {
+  border: 8px solid rgba(0, 0, 0, 0.1); /* Цвет фона */
+  border-radius: 50%;
+  border-top: 8px solid #0078d4; /* Цвет верхней части спиннера */
+  width: 60px;
+  height: 60px;
+  animation: spin 1.5s linear infinite;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Заполняет высоту экрана */
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

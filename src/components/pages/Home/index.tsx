@@ -10,6 +10,7 @@ import About from '@components/pages/Home/components/About';
 import Skills from '@components/pages/Home/components/Skills';
 
 import styles from "@components/pages/Home/index.module.scss";
+import { Spinner } from '@components/ui';
 
 const HomePage: FC = () => {
   const { webApp, chatId} = useTelegram()
@@ -19,7 +20,7 @@ const HomePage: FC = () => {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_PATH || ''
   const tgUrl = process.env.NEXT_PUBLIC_TELEGRAM_BOT_URL || ''
 
-  useThreeScene()
+  const { isReady } = useThreeScene()
 
   useEffect(() => {
     if (webApp) {
@@ -33,6 +34,12 @@ const HomePage: FC = () => {
       once: true,
     });
   }, [])
+
+  if (!isReady) {
+    return (
+      <Spinner />
+    )
+  }
 
   if (!chatId) {
     return (
