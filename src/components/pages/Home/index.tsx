@@ -9,11 +9,15 @@ import Main from '@components/pages/Home/components/Main';
 import About from '@components/pages/Home/components/About';
 import Skills from '@components/pages/Home/components/Skills';
 
-import styles from "@components/pages/Home/index.module.scss";
 import { Spinner } from '@components/ui';
+import { usePathname } from 'next/navigation';
+import { yandexCounter } from '@lib/yandexCounter';
+
+import styles from "@components/pages/Home/index.module.scss";
 
 const HomePage: FC = () => {
   const { webApp, chatId} = useTelegram();
+  const pathname = usePathname();
 
   const [finishedText, setFinishedText] = useState(false);
   const text = 'I&rsquo;\tam a frontend developer with 5 years of experience. I love coding and building websites.';
@@ -21,6 +25,10 @@ const HomePage: FC = () => {
   const tgUrl = process.env.NEXT_PUBLIC_TELEGRAM_BOT_URL || '';
 
   const { isReady } = useThreeScene();
+
+  useEffect(() => {
+    yandexCounter.hit(pathname);
+  }, [pathname]);
 
   useEffect(() => {
     if (webApp) {

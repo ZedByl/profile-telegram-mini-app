@@ -1,0 +1,1 @@
+export { yandexCounter } from './yandexCounter';
