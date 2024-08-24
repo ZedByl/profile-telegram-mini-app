@@ -2,6 +2,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import Script from 'next/script';
 import { useSearchParams } from 'next/navigation';
+import { YandexMetrica } from '@components/common/YandexMetrica';
 
 export interface ITelegramContext {
   chatId?: string;
@@ -18,6 +19,9 @@ export function TelegramProvider({ children }: {
   const [isTgReady, setIsTgReady] = useState(false);
   const searchParams = useSearchParams();
   const chatId = searchParams.get('chatId') || ''
+  const id = process.env.NEXT_PUBLIC_YM_ID || ''
+
+  console.log(id)
 
   useEffect(() => {
     const telegram: Telegram | null = (window as any).Telegram;
@@ -39,6 +43,7 @@ export function TelegramProvider({ children }: {
 
     return (
       <TelegramContext.Provider value={value}>
+        <YandexMetrica id={id} />
         <Script src="https://telegram.org/js/telegram-web-app.js" onReady={() => setIsTgReady(true)}/>
         {children}
       </TelegramContext.Provider>
