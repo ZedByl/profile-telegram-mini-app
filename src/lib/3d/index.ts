@@ -17,8 +17,10 @@ let bg: Mesh<BufferGeometry<NormalBufferAttributes>, Material | Material[], Obje
 let setIsReady: Dispatch<SetStateAction<boolean>>
 
 class World {
-  constructor(container: HTMLElement, fc: Dispatch<SetStateAction<boolean>>) {
-    setIsReady = fc
+  constructor(container: HTMLElement,
+              // fc: Dispatch<SetStateAction<boolean>>
+  ) {
+    // setIsReady = fc
     camera = createCamera();
     renderer = createRenderer();
     scene = createScene();
@@ -43,7 +45,7 @@ class World {
       skull = await createSkull(this.handleScroll);
 
       if (skull) {
-        setIsReady(true);
+        // setIsReady(true);
         loop.updatables.push(skull);
         scene.add(skull);
       }
