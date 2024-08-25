@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useTelegram } from '@providers/telegram-provider';
 import { TonConnectButton, useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 import { beginCell, toNano } from 'ton';
+import { yandexCounter } from '@lib/yandexCounter';
 
 import styles from '@components/pages/Home/index.module.scss';
 import ava from '@assets/face.jpg';
@@ -42,6 +43,7 @@ const Main = () => {
     }
 
     try {
+      yandexCounter.initReach('click-donate');
       changeLoading();
       webApp?.HapticFeedback?.impactOccurred('soft');
       await tonConnectUI.sendTransaction(myTransaction);
@@ -56,6 +58,7 @@ const Main = () => {
 
   const handleResume = async () => {
     try {
+      yandexCounter.initReach('click-resume');
       changeLoading();
       webApp?.HapticFeedback.impactOccurred('light');
       await fetch('api/resume', { method: "POST", body: JSON.stringify({ user, webApp, chatId }) });
@@ -71,6 +74,7 @@ const Main = () => {
 
   const handleContact = async () => {
     try {
+      yandexCounter.initReach('click-contact');
       changeLoading();
       webApp?.HapticFeedback.impactOccurred('light');
       await fetch('api/contact', { method: "POST", body: JSON.stringify({ user, webApp, chatId }) });

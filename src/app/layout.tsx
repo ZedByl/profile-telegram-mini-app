@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { YandexMetrica } from '@components/common/YandexMetrica';
 import "./globals.scss";
 
 export const metadata: Metadata = {
-  title: 'ZedByl Resume',
-  description: 'Telegram mini app for ZedByl integration',
+  title: 'ZedByl',
+  description: 'Telegram mini app for ZedByl Resume',
   formatDetection: {
     telephone: false,
   },
@@ -18,9 +19,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const id = process.env.NEXT_PUBLIC_YM_ID || '';
+
   return (
     <html lang="en">
       <body>
+        <YandexMetrica id={id} />
         {children}
         <div className='three' id='three-id' />
       </body>

@@ -8,4 +8,10 @@ export const yandexCounter = {
 
     window.ym(yandexMetrikaId, 'hit', url, params);
   },
+  initReach(name: string, params?: object, callback?: () => void): void {
+    if (!window.ym) return;
+    if (!name) return;
+
+    window.ym(yandexMetrikaId, 'reachGoal', name, params, callback);
+  },
 };
