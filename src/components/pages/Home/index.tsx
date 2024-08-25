@@ -53,7 +53,7 @@ const HomePage: FC = () => {
     return (
       <div className={styles.error} data-aos="zoom-in">
         <h2>Something went wrong</h2>
-        <p>Open the app in Telegram or try again later 😏</p>
+        <p>Open the app in <a href='https://t.me/Zedbyl_bot' target="_blank">Telegram</a> or try again later 😏</p>
       </div>
     );
   }

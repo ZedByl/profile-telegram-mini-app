@@ -123,4 +123,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  & a {
+    @include m-hover();
+    color: $colorWhite;
+  }
 }
