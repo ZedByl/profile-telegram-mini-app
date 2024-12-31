@@ -6,7 +6,7 @@ import { beginCell, toNano } from 'ton';
 import { yandexCounter } from '@lib/yandexCounter';
 
 import styles from '@components/pages/Home/index.module.scss';
-import ava from '@assets/face.jpg';
+import ava from '@assets/face.jpeg';
 
 const body = beginCell()
 .storeUint(0, 32)
@@ -104,7 +104,7 @@ const Main = () => {
         data-aos="fade-up"
         data-aos-delay="300"
       >
-        Frontend Developer at Rbc Pro
+        Fullstack Wed Developer
       </div>
 
       <div className={styles.main__buttons}>

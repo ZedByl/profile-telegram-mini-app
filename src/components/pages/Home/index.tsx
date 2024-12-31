@@ -20,7 +20,7 @@ const HomePage: FC = () => {
   const pathname = usePathname();
 
   const [finishedText, setFinishedText] = useState(false);
-  const text = 'I&rsquo;\tam a frontend developer with 5 years of experience. I love coding and building websites.';
+  const text = 'I&rsquo;\tam a fullstack developer with 6 years of experience. I love coding and building websites.';
   const baseUrl = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const tgUrl = process.env.NEXT_PUBLIC_TELEGRAM_BOT_URL || '';
 
@@ -71,7 +71,6 @@ const HomePage: FC = () => {
       }}
     >
       <div className={styles.wrap}>
-        {/*<div className={styles.lang}>En</div>*/}
 
         <Main />
         <About text={text} setFinishedText={setFinishedText} />
